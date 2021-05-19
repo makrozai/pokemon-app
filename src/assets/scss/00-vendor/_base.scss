@@ -1,4 +1,14 @@
 body {
   background-color: #F9F9F9;
   font-family: 'lato';
+  color: #353535;
+}
+.ed-grid {
+  margin: 0 auto;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

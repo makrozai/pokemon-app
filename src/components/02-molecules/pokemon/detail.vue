@@ -1,21 +1,36 @@
 <template lang="pug">
   .m-pokemon-detail
     i.icon-close
-    img(src="https://i.blogs.es/d2f1c3/pokemon-espada-escudo-pikachu-gigamax/1366_2000.jpeg")
+    .m-pokemon-detail__image
+      img(
+        src="@/assets/images/wallpaper.png"
+      )
+      img(
+        :src="S_POKEMON.sprites.other['official-artwork'].front_default"
+      )
     ul
       li
         span Name
-        | Squirtle
+        | {{ S_POKEMON.name }}
       li
-        span Name
-        | Squirtle
+        span Weight
+        | {{ S_POKEMON.weight }}
+      li
+        span Height
+        | {{ S_POKEMON.height }}
+      li
+        span Types
+        | {{ nameTypes() }}
     .m-pokemon-detail__footer
       .m-btn Share to my friends
-      i.icon-star
+      i.icon-star(
+        :class="stateFavorite ? 'active' : ''"
+        @click="changeStateFavorite"
+      )
 </template>
 
 <script>
-// import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 // import component from '@/components/component.vue'
 
 export default {
@@ -24,29 +39,65 @@ export default {
   },
   props: {
     // propierty: { required: false, type: String },
-    item: {
-      required: true,
-      type: Array
-    }
   },
 
   data () {
     return {
-      data: ''
+      data: '',
+      stateFavorite: false
     }
   },
 
   computed: {
-    // ...mapState({
-    // homeCampaign: state => state.homeCampaign
-    // })
+    ...mapState({
+      S_POKEMON: state => state.Pokemons.S_POKEMON,
+      S_FAVORITES: state => state.Pokemons.S_FAVORITES
+    })
   },
-
   watch: {},
-  created () {},
+  created () {
+    const initialState = this.S_FAVORITES.find(item => item === this.S_POKEMON.name)
+    console.log(this.S_FAVORITES)
+    if (initialState) {
+      this.stateFavorite = true
+    } else {
+      this.stateFavorite = false
+    }
+  },
   mounted () {},
   updated () {},
-  methods: {}
+  methods: {
+    ...mapActions({
+      A_ASIGN_FAVORITE: 'Pokemons/A_ASIGN_FAVORITE',
+      A_DELETE_FAVORITE: 'Pokemons/A_DELETE_FAVORITE'
+    }),
+    nameTypes () {
+      let values = ''
+      this.S_POKEMON.types.forEach((element, key) => {
+        values += this.capitalizeFirstLetter(element.type.name)
+        
+        if (key < this.S_POKEMON.types.length - 1) {
+          values += ', '
+        }
+      })
+      return values
+    },
+    capitalizeFirstLetter(str) {
+      // converting first letter to uppercase
+      const capitalized = str.replace(/^./, str[0].toUpperCase());
+      return capitalized;
+    },
+    changeStateFavorite () {
+      this.stateFavorite = !this.stateFavorite
+      
+      if (this.stateFavorite) {
+        this.A_ASIGN_FAVORITE(this.S_POKEMON.name)
+      } else {
+        this.A_DELETE_FAVORITE(this.S_POKEMON.name)
+      }
+      this.$emit('changed', true)
+    }
+  }
 }
 </script>
 

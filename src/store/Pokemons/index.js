@@ -12,9 +12,31 @@ const ls = new SecureLS({ isCompression: false })
 
 const state = {
   S_POKEMONS: [],
-  S_POKEMON: {}
+  S_POKEMON: {},
+  S_FAVORITES: []
 }
-const getters = {}
+const getters = {
+  G_FILTER: (state) => (params) => {
+    let results = state.S_POKEMONS
+    if (params.search.length) {
+      results = results.filter((element) => {
+        return element.name.toLowerCase().includes(params.search.toLowerCase())
+      })
+    }
+    if (params.favorite) {
+      let resultFavorite = []
+      results.forEach(element => {
+        state.S_FAVORITES.forEach(item => {
+          if (item === element.name) {
+            resultFavorite.push(element)
+          }
+        })
+      })
+      results = resultFavorite
+    }
+    return results
+  }
+}
 const mutations = {
   SET_DATA (state, params) {
     // console.log(params)
@@ -22,6 +44,10 @@ const mutations = {
   },
   PUSH_DATA (state, params) {
     state[params.destination].push(params.data)
+  },
+  DELETE_DATA (state, params) {
+    const index = state[params.destination].findIndex(item => item.name === params.data)
+    state[params.destination].splice(index, 1)
   }
 }
 const actions = {
@@ -37,6 +63,31 @@ const actions = {
     } catch (error) {
       console.log('ERROR_REGISTER [ACTION]', error)
     }
+  },
+  async A_GET_POKEMON ({ commit  }, params) {
+    try {
+      const { data } = await HTTP.get(`pokemon/${params}`)
+      
+      commit('SET_DATA', {
+        destination: 'S_POKEMON',
+        data: data
+      })
+
+    } catch (error) {
+      console.log('ERROR_REGISTER [ACTION]', error)
+    }
+  },
+  A_ASIGN_FAVORITE ({ commit  }, params) {
+    commit('PUSH_DATA', {
+      destination: 'S_FAVORITES',
+      data: params
+    })
+  },
+  A_DELETE_FAVORITE ({ commit  }, params) {
+    commit('DELETE_DATA', {
+      destination: 'S_FAVORITES',
+      data: params
+    })
   }
 }
 export default {

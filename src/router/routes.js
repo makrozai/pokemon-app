@@ -4,8 +4,11 @@
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    redirect: { name: 'HomePage' }
+    name: 'Landing',
+    component: () => import('../components/05-pages/landing/default.vue'),
+    meta: {
+      title: 'Home'
+    }
   },
   {
     path: '/home',

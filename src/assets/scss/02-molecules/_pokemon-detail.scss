@@ -7,6 +7,7 @@
     font-size: 1.5rem;
     top: 0;
     right: 0;
+    color: white;
   }
   ul {
     padding-left: 0;
@@ -35,5 +36,16 @@
     display: flex;
     justify-content: space-between;
     padding: 0 1rem 1rem;
+  }
+  &__image {
+    position: relative;
+
+    img:last-child {
+      width: 10rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+    }
   }
 }
