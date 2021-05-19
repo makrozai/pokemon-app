@@ -1,0 +1,46 @@
+.e-search {
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+
+  label {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  &__input {
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.04);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+    input {
+      height: 50px;
+      font-weight: 300;
+
+      &::placeholder {
+        font-weight: 300;
+      }
+    }
+  }
+  i {
+    color: #BFBFBF;
+    padding: .5rem;
+  }
+  span {
+    display: block;
+    margin-bottom: .5rem;
+  }
+  &.row {
+    label {
+      flex-direction: row;
+      align-items: center;
+    }
+    span {
+      margin-bottom: 0;
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.m-pokemon {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+
+  span {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    cursor: pointer;
+  }
+  i {
+    background-color: #F5F5F5;
+    color: #BFBFBF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+
+    &.active {
+      color: #ECA539;
+    }
+  }
+}

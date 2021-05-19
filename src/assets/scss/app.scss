@@ -1,0 +1,53 @@
+// 00.- Vendor ⚙️
+// 01.- Atoms 🛠️
+// 02.- Molecules 
+// 03.- Organisms
+// 04.- Templates
+// 05.- Pages
+// 06.- Shame
+
+// =========================
+// 00.- Vendor
+// =========================
+@import "~ed-grid/ed-grid";
+@import "00-vendor/config";
+
+// =========================
+// 00.- Vendor ⚙️ import of global variables & configurations
+// =========================
+@import "00-vendor/colors";
+@import "00-vendor/fonts";
+@import "00-vendor/base";
+
+// =========================
+// 01.- Atoms 🛠️ import of atoms
+// =========================
+@import "01-atoms/input";
+@import "01-atoms/search";
+
+// =========================
+// 02.- Molecules 🛠️ import of molecules
+// =========================
+@import "02-molecules/btn";
+@import "02-molecules/pokemon";
+@import "02-molecules/pokemon-detail";
+
+// =========================
+// 03.- Organisms - import of organisms
+// =========================
+@import "03-organisms/pokemons";
+
+// =========================
+// 04.- Templates - import of templates
+// =========================
+
+// =========================
+// 05.- Pages - import of pages
+// =========================
+@import "05-pages/home";
+
+// =========================
+// 06.- Shame
+// (where is your honor?, why use this?)
+// =========================
+//@import "06-shame/"

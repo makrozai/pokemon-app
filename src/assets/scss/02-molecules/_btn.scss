@@ -1,0 +1,31 @@
+.m-btn {
+  background-color: $g-primary;
+  color: white;
+  padding: .8rem 1.5rem;
+  border-radius: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all .3s;
+
+  &:hover {
+    text-decoration: none;
+  }
+  i {
+    margin-right: .5rem;
+    position: relative;
+    display: inline-block;
+
+    &:before {
+      display: inline-block;
+      transform: translateY(2px);
+    }
+  }
+  &.fullwidth {
+    display: block;
+    width: 100%;
+  }
+  &.disabled {
+    background-color: #BFBFBF;
+  }
+}
